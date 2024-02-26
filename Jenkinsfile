@@ -41,7 +41,7 @@ pipeline {
 
            steps {
                script {
-                    //def plan =  bat 'type terraform\\output.txt'
+                    def plan =  bat 'type terraform\\tfplan'
                     input message: "Do you want to apply the plan?",
                     parameters: [text(name: 'Plan', description: 'Please review the plan', defaultValue: plan)]
                }
