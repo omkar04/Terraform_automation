@@ -43,7 +43,7 @@ pipeline {
         }
         stage('Approval') {
 
-            bat 'echo "approved"'
+            //bat 'echo "approved"'
            //when {
              //  not {
                //    equals expected: true, actual: params.autoApprove
