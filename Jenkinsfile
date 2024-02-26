@@ -61,7 +61,7 @@ pipeline {
 
         stage('Apply') {
             steps {
-                bat "echo "apply""
+                bat 'echo "apply"'
                // sh "pwd;cd terraform/ ; terraform apply -input=false tfplan"
                 // bat 'dir'
                 //bat 'cd terraform/'
