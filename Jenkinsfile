@@ -41,7 +41,7 @@ pipeline {
                 sh 'git push origin aws_automation:aws_automation'
             }
         }
-        stage('Approval') {
+       // stage('Approval') {
 
             //bat 'echo "approved"'
            //when {
@@ -57,17 +57,17 @@ pipeline {
                     //parameters: [text(name: 'Plan', description: 'Please review the plan', defaultValue: plan)]
               // }
            //}
-       }
+       //}
 
-        stage('Apply') {
-            steps {
-                bat 'echo "apply"'
+       // stage('Apply') {
+         //   steps {
+           //     bat 'echo "apply"'
                // sh "pwd;cd terraform/ ; terraform apply -input=false tfplan"
                 // bat 'dir'
                 //bat 'cd terraform/'
                 // bat 'terraform apply -input=false tfplan'
-            }
-        }
+           // }
+        //}
     }
 
   }
