@@ -32,18 +32,25 @@ pipeline {
                 bat 'terraform show -no-color tfplan >> tfplan.txt && type tfplan.txt ' // | more >> output.txt'
             }
         }
-        stage('Approval') {
-           when {
-               not {
-                   equals expected: true, actual: params.autoApprove
-               }
+        stage('PUSH') {
+                bat 'dir'
+                bat 'cd terraform/'
+                bat 'git add tfplan.txt'
+                bat 'git commit -m "Plan file pushed"'
+                bat 'git push origin aws_automation:aws_automation'
            }
+        stage('Approval') {
+           //when {
+             //  not {
+               //    equals expected: true, actual: params.autoApprove
+           //    }
+           //}
 
            steps {
                script {
-                    def plan =   bat 'more terraform\\tfplan.txt'
-                    input message: "Do you want to apply the plan?",
-                    parameters: [text(name: 'Plan', description: 'Please review the plan', defaultValue: plan)]
+                    //def plan =   bat 'more terraform\\tfplan.txt'
+                    //input message: "Do you want to apply the plan?",
+                    //parameters: [text(name: 'Plan', description: 'Please review the plan', defaultValue: plan)]
                }
            }
        }
@@ -51,9 +58,9 @@ pipeline {
         stage('Apply') {
             steps {
                // sh "pwd;cd terraform/ ; terraform apply -input=false tfplan"
-                 bat 'dir'
-                bat 'cd terraform/'
-                bat 'terraform apply -input=false tfplan'
+                // bat 'dir'
+                //bat 'cd terraform/'
+                // bat 'terraform apply -input=false tfplan'
             }
         }
     }
