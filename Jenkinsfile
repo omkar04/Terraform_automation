@@ -38,7 +38,7 @@ pipeline {
                 bat 'cd terraform/'
                 bat 'git add .'
                 bat 'git commit -m "Plan file pushed"'
-                bat 'git push'
+                bat 'git push origin HEAD:aws_automation'
             }
         }
        // stage('Approval') {
