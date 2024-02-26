@@ -10,12 +10,22 @@ pipeline {
 
    agent  any
     stages {
+        stage('checkout') {
+            steps {
+                 script{
+                        dir("terraform")
+                        {
+                            git "https://github.com/omkar04/Terraform_automation.git"
+                        }
+                    }
+                }
+            }
+
         stage('Plan') {
             steps {
-                sh "terraform init"
-               // sh 'pwd ; cd terraform/ ; terraform init'
-                //sh "pwd ; cd terraform/ ; terraform plan -out tfplan"
-                //sh 'pwd ; cd terraform/ ; terraform show -no-color tfplan > tfplan.txt'
+                sh 'pwd;cd terraform/ ; terraform init'
+                sh "pwd;cd terraform/ ; terraform plan -out tfplan"
+                sh 'pwd;cd terraform/ ; terraform show -no-color tfplan > tfplan.txt'
             }
         }
         stage('Approval') {
