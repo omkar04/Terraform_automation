@@ -29,7 +29,7 @@ pipeline {
                 bat 'cd terraform/'
                 bat 'terraform plan -out tfplan'
                 bat 'cd terraform/'
-                bat 'terraform show -no-color tfplan' // >> tfplan.txt && type tfplan.txt | more >> output.txt'
+                bat 'terraform show -no-color tfplan >> tfplan.txt' //&& type tfplan.txt | more >> output.txt'
             }
         }
         stage('Approval') {
@@ -41,7 +41,7 @@ pipeline {
 
            steps {
                script {
-                    def plan =  bat 'type terraform\\tfplan'
+                    def plan =  bat 'type terraform\\tfplan.txt'
                     input message: "Do you want to apply the plan?",
                     parameters: [text(name: 'Plan', description: 'Please review the plan', defaultValue: plan)]
                }
