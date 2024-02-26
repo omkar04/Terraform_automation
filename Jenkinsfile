@@ -29,7 +29,7 @@ pipeline {
                 bat 'cd terraform/'
                 bat 'terraform plan -out tfplan'
                 bat 'cd terraform/'
-                bat 'terraform show -no-color tfplan > tfplan.txt'
+                bat 'terraform show -no-color tfplan > tfplan.txt && type tfplan.txt | more > output.txt'
             }
         }
         stage('Approval') {
