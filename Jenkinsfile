@@ -24,9 +24,14 @@ pipeline {
         stage('Plan') {
             steps {
                 bat 'dir'
-                bat 'dir;cd terraform/ ; terraform init'
-                bat "dir;cd terraform/ ; terraform plan -out tfplan"
-                bat 'dir;cd terraform/ ; terraform show -no-color tfplan > tfplan.txt'
+                bat 'cd terraform/'
+                bat 'terraform init'
+                bat 'dir'
+                bat 'cd terraform/'
+                bat 'terraform plan -out tfplan'
+                bat 'dir'
+                bat 'cd terraform/'
+                bat 'terraform show -no-color tfplan > tfplan.txt'
             }
         }
         stage('Approval') {
