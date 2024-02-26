@@ -42,23 +42,26 @@ pipeline {
             }
         }
         stage('Approval') {
+
+            bat 'echo "approved"'
            //when {
              //  not {
                //    equals expected: true, actual: params.autoApprove
            //    }
            //}
 
-           steps {
-               script {
+          // steps {
+            //   script {
                     //def plan =   bat 'more terraform\\tfplan.txt'
                     //input message: "Do you want to apply the plan?",
                     //parameters: [text(name: 'Plan', description: 'Please review the plan', defaultValue: plan)]
-               }
-           }
+              // }
+           //}
        }
 
         stage('Apply') {
             steps {
+                bat "echo "apply""
                // sh "pwd;cd terraform/ ; terraform apply -input=false tfplan"
                 // bat 'dir'
                 //bat 'cd terraform/'
