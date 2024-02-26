@@ -33,12 +33,14 @@ pipeline {
             }
         }
         stage('push') {
+            steps {
                 bat 'dir'
                 bat 'cd terraform/'
                 bat 'git add .'
                 bat 'git commit -m "Plan file pushed"'
                 bat 'git push origin aws_automation:aws_automation'
-           }
+            }
+        }
         stage('Approval') {
            //when {
              //  not {
