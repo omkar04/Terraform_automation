@@ -26,10 +26,8 @@ pipeline {
                 bat 'dir'
                 bat 'cd terraform/'
                 bat 'terraform init'
-                bat 'dir'
                 bat 'cd terraform/'
                 bat 'terraform plan -out tfplan'
-                bat 'dir'
                 bat 'cd terraform/'
                 bat 'terraform show -no-color tfplan > tfplan.txt'
             }
@@ -52,7 +50,10 @@ pipeline {
 
         stage('Apply') {
             steps {
-                sh "pwd;cd terraform/ ; terraform apply -input=false tfplan"
+               // sh "pwd;cd terraform/ ; terraform apply -input=false tfplan"
+                 bat 'dir'
+                bat 'cd terraform/'
+                bat 'terraform apply -input=false tfplan'
             }
         }
     }
