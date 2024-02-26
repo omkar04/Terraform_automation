@@ -32,10 +32,10 @@ pipeline {
                 bat 'terraform show -no-color tfplan >> tfplan.txt && type tfplan.txt ' // | more >> output.txt'
             }
         }
-        stage('PUSH') {
+        stage('push') {
                 bat 'dir'
                 bat 'cd terraform/'
-                bat 'git add tfplan.txt'
+                bat 'git add .'
                 bat 'git commit -m "Plan file pushed"'
                 bat 'git push origin aws_automation:aws_automation'
            }
